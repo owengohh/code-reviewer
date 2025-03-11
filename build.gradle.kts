@@ -40,7 +40,6 @@ dependencies {
     implementation("io.quarkus:quarkus-smallrye-openapi")
     implementation("io.quarkus:quarkus-rest-jackson")
     implementation("io.quarkus:quarkus-kotlin")
-    implementation("io.quarkus:quarkus-amazon-lambda-rest")
     implementation("io.quarkus:quarkus-rest-client-jaxb")
     implementation("io.quarkus:quarkus-rest-jaxb")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
