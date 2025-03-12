@@ -74,3 +74,9 @@ kotlin {
         javaParameters = true
     }
 }
+
+tasks.register<Exec>("deploy") {
+    commandLine("sam", "deploy", "--template", "sam.yml")
+    description = "Deploys the lambda to AWS."
+    group = "Release"
+}
