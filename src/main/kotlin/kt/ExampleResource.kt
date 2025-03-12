@@ -1,10 +1,14 @@
 package kt
 
-import com.amazonaws.services.lambda.runtime.Context
-import com.amazonaws.services.lambda.runtime.RequestHandler
+import jakarta.ws.rs.GET
+import jakarta.ws.rs.Path
+import jakarta.ws.rs.Produces
+import jakarta.ws.rs.core.MediaType
 
-class ExampleResource: RequestHandler<String, String> {
-    override fun handleRequest(p0: String, p1: Context?): String {
-        return "Hello from Quarkus REST"
-    }
+@Path("/hello")
+class ExampleResource {
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    fun hello() = "Hello from Quarkus REST"
 }

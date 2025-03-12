@@ -1,18 +1,19 @@
 package kt
 
 import io.quarkus.test.junit.QuarkusTest
+import io.restassured.RestAssured.given
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.jupiter.api.Test
-import com.amazonaws.services.lambda.runtime.Context
-import io.mockk.mockk
-import org.assertj.core.api.Assertions.assertThat
 
 @QuarkusTest
 class ExampleResourceTest {
+
     @Test
-    fun testHandleRequest() {
-        val exampleResource = ExampleResource()
-        val context = mockk<Context>()
-        val result = exampleResource.handleRequest("test input", context)
-        assertThat(result).isEqualTo("Hello from Quarkus REST")
+    fun testHelloEndpoint() {
+        given()
+            .`when`().get("/hello")
+            .then()
+            .statusCode(200)
+            .body(`is`("Hello from Quarkus REST"))
     }
 }

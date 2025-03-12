@@ -27,7 +27,8 @@ val quarkusPlatformVersion: String by project
 
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-    implementation("io.quarkus:quarkus-amazon-lambda")
+//    implementation("io.quarkus:quarkus-amazon-lambda")
+    implementation("io.quarkus:quarkus-amazon-lambda-http")
     implementation("io.quarkus:quarkus-rest")
     implementation("io.quarkus:quarkus-rest-client-jsonb")
     implementation("io.quarkus:quarkus-rest-client-kotlin-serialization")
@@ -73,10 +74,4 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
         javaParameters = true
     }
-}
-
-tasks.register<Exec>("deploy") {
-    commandLine("sam", "deploy", "--template", "sam.yml")
-    description = "Deploys the lambda to AWS."
-    group = "Release"
 }
