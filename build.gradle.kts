@@ -33,7 +33,6 @@ dependencies {
     implementation("io.quarkus:quarkus-rest-client-kotlin-serialization")
     implementation("io.quarkus:quarkus-rest-client")
     implementation("io.quarkus:quarkus-rest-kotlin-serialization")
-    implementation("io.quarkus:quarkus-amazon-lambda-http")
     implementation("io.quarkus:quarkus-rest-client-jackson")
     implementation("io.quarkus:quarkus-amazon-lambda-xray")
     implementation("io.quarkus:quarkus-rest-jsonb")
@@ -47,6 +46,8 @@ dependencies {
     implementation("io.quarkus:quarkus-arc")
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
+    testImplementation("org.assertj:assertj-core:3.6.1")
+    testImplementation("io.mockk:mockk:1.13.17")
 }
 
 group = "kt"
