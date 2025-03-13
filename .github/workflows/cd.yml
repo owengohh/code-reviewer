@@ -27,7 +27,5 @@ jobs:
       - name: Build Lambda
         run: ./gradlew build
 
-      - name: Deploy Lambda
-        run: aws lambda update-function-code \
-            --function-name testLambda \
-            --zip-file fileb://build/function.zip
+      - name: Deploy JAR to AWS Lambda
+        run: aws lambda update-function-code --function-name testLambda --zip-file fileb://build/function.zip
