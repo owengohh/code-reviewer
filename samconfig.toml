@@ -1,10 +1,17 @@
 version = 0.1
 [default.deploy.parameters]
 stack_name = "code-reviewer"
+template_file = "./build/sam.jvm.yaml"
 resolve_s3 = true
 s3_prefix = "code-reviewer"
 region = "ap-southeast-1"
 confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
+
 disable_rollback = true
 image_repositories = []
+
+cached="true"
+parallel="true"
+use_container="true"
+warm_containers="EAGER"
