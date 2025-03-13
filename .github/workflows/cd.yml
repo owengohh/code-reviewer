@@ -27,5 +27,21 @@ jobs:
       - name: Build Lambda
         run: ./gradlew build
 
-      - name: Deploy JAR to AWS Lambda
-        run: aws lambda update-function-code --function-name testLambda --zip-file fileb://build/function.zip
+      - name: Deploy Lambda
+        run: |
+          FUNCTION_NAME="testLambda"
+          ZIP_FILE="build/quarkus-app.zip"
+          ROLE_ARN="arn:aws:iam::654654510601:user/lambda-user"
+          
+          echo "Trying to create the Lambda function..."
+          aws lambda create-function \
+            --function-name "$FUNCTION_NAME" \
+            --runtime java17 \
+            --role "$ROLE_ARN" \
+            --handler com.example.Main::handleRequest \
+            --zip-file fileb://$ZIP_FILE \
+            --region ap-southeast-1 || \
+          { 
+            echo "Function already exists, updating..."
+            aws lambda update-function-code --function-name "$FUNCTION_NAME" --zip-file fileb://$ZIP_FILE --region ap-southeast-1
+          }
