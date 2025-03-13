@@ -28,4 +28,4 @@ jobs:
         run: ./gradlew build
 
       - name: Deploy Lambda
-        run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+        run: sam deploy --template-file build/sam.native.yaml --no-confirm-changeset --no-fail-on-empty-changeset
