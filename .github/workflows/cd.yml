@@ -31,7 +31,7 @@ jobs:
         run: |
           FUNCTION_NAME="testLambda"
           ZIP_FILE="build/function.zip"
-          ROLE_ARN="arn:aws:iam::654654510601:user/lambda-user"
+          ROLE_ARN="arn:aws:iam::654654510601:role/lambda-full-access-role"
           
           echo "Trying to create the Lambda function..."
           aws lambda create-function \
