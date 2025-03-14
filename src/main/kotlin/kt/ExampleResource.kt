@@ -15,9 +15,13 @@ class ExampleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     fun handleGithubPullRequest(payload: Map<String, Any>) {
         logger.info("Received payload: $payload")
-        val action = payload.getOrDefault("action", null)
-        if (action != null) {
-            logger.info("Action: $action")
+        val action = payload["action"] as String?
+        logger.info("Action: ${action ?: "unknown"}")
+        if (action == "opened") {
+            val prNumber = payload["number"] as Int?
+            val pullRequest = payload["pull_request"] as Map<*, *>?
+            val diffUrl = pullRequest?.get("diff_url") as String?
+            logger.info("Processing PR # $prNumber - Diff URL: $diffUrl")
         }
     }
 }
