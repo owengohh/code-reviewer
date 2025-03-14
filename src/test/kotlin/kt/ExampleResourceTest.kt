@@ -2,18 +2,25 @@ package kt
 
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
-import org.hamcrest.CoreMatchers.`is`
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 import org.junit.jupiter.api.Test
 
 @QuarkusTest
 class ExampleResourceTest {
 
     @Test
-    fun testHelloEndpoint() {
+    fun testHandleGithubPullRequest() {
+        val payload = buildJsonObject {
+            put("action", "opened")
+        }.toString()
+
         given()
-            .`when`().get("/hello")
+            .contentType("application/json")
+            .body(payload)
+            .`when`()
+            .post("/github-webhook")
             .then()
-            .statusCode(200)
-            .body(`is`("Hello from Quarkus REST"))
+            .statusCode(204) // Assuming no content response
     }
 }
