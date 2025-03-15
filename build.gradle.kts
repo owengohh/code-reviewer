@@ -26,9 +26,9 @@ val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
 
 dependencies {
+    implementation("io.quarkiverse.langchain4j:quarkus-langchain4j-openai:0.25.0")
     implementation("io.quarkus:quarkus-container-image-docker")
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
-//    implementation("io.quarkus:quarkus-amazon-lambda")
     implementation("io.quarkus:quarkus-amazon-lambda-http")
     implementation("io.quarkus:quarkus-rest")
     implementation("io.quarkus:quarkus-rest-client-jsonb")

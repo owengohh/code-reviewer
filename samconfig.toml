@@ -10,8 +10,3 @@ capabilities = "CAPABILITY_IAM"
 
 disable_rollback = true
 image_repositories = []
-
-cached="true"
-parallel="true"
-use_container="true"
-warm_containers="EAGER"
