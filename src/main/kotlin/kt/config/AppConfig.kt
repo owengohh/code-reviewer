@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory
 class AppConfig {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
-    @ConfigProperty(name = "quarkus_langchain4j_openai_api_key")
+    @ConfigProperty(name = "quarkus_langchain4j_openai_api_key", defaultValue = "dummy")
     lateinit var openAiApiKey: String
 
     @PostConstruct
