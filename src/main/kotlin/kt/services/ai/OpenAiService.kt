@@ -15,6 +15,8 @@ class OpenAiService(
         .apiKey(appConfig.openAiApiKey)
         .modelName("gpt-4-turbo")
         .temperature(0.1)
+        .responseFormat("json")
+        .strictJsonSchema(true)
         .build()
 
     override fun generateCodeReview(diffContent: String, history: List<String>?): String {
@@ -22,7 +24,7 @@ class OpenAiService(
         val trimmedDiff = diffContent.lines().joinToString("\n") { line ->
             if (line.startsWith("+") || line.startsWith("-")) line else ""
         }
-        logger.info("Generating code review using gpt-4o model")
+        logger.info("Generating code review using gpt-4-turbo model")
         val prompt = """
         You are an AI-powered code reviewer.
          **Recent Review History**:
@@ -39,6 +41,8 @@ class OpenAiService(
 
         Respond in **GitHub Markdown format** for clear presentation.
         """.trimIndent()
-        return openAiModel.chat(prompt)
+        val response = openAiModel.chat(prompt)
+        logger.info("OpenAI response: $response")
+        return response
     }
 }
